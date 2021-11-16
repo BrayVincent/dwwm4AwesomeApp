@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
-<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+	<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
 {% endblock %}
 
@@ -18,6 +18,7 @@
 				<th>Nom</th>
 				<th>Description</th>
 				<th>Date effective</th>
+				<th>Catégories</th>
 			</thead>
 			<tbody>
 				{% if tasks is defined %}
@@ -27,6 +28,7 @@
 							<td>{{ task.name }}</td>
 							<td>{{ task.description }}</td>
 							<td>{{ task.dueAt | date('d/m/Y H:i') }}</td>
+							<td>{{ task.tag.name }}</td>
 						</tr>
 					{% endfor %}
 				{% endif %}
