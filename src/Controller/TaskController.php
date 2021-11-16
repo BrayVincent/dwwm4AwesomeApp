@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Task;
 use App\Form\TaskType;
+use App\Repository\TaskRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -11,6 +13,21 @@ use Symfony\Component\HttpFoundation\Request;
 
 class TaskController extends AbstractController
 {
+    /**
+     * @var TaskRepository
+     */
+    private $repository;
+
+    /**
+     * @var EntityManagerInterface
+     */
+    private $manager;
+
+    public function __construct(TaskRepository $repository, EntityManagerInterface $manager)
+    {
+        $this->repository = $repository;
+        $this->manager = $manager;
+    }
 
     /**
      * @Route("/task/listing", name="task_listing")
@@ -18,16 +35,8 @@ class TaskController extends AbstractController
     public function index(): Response
     {
 
-        // On va chercher avec Doctrine le Repository de nos Task
-        $repository = $this->getDoctrine()->getRepository(Task::class);
-
         // Dans ce repository nous récupérons toutes les données
-        $tasks = $repository->findAll();
-
-        // Affichage des données dans le var_dumper
-        // var_dump($tasks);
-        // die;
-        // dd($tasks);
+        $tasks = $this->repository->findAll();
 
         return $this->render('task/index.html.twig', [
             'tasks' => $tasks,
@@ -36,27 +45,25 @@ class TaskController extends AbstractController
 
     /**
      * @Route("/task/create", name="task_create")
+     * @Route("task/update/{id}", name="task_update", requirements={"id"="\d+"})
      */
-    public function createTask(Request $request)
+    public function task(Task $task = null, Request $request)
     {
 
-        $task = new Task;
+        if (!$task) {
+            $task = new Task;
 
-        $task->setCreatedAt(new \DateTime());
+            $task->setCreatedAt(new \DateTime());
+        }
 
         $form = $this->createForm(TaskType::class, $task, []);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // $task->setName($form['name']->getData())
-            //     ->setDescription($form['description']->getData())
-            //     ->setDueAt($form['dueAt']->getData())
-            //     ->setTag($form['tag']->getData());
 
-            $manager = $this->getDoctrine()->getManager();
-            $manager->persist($task);
-            $manager->flush();
+            $this->manager->persist($task);
+            $this->manager->flush();
 
             return $this->redirectToRoute('task_listing');
         }
