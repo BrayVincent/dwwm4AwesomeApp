@@ -1,0 +1,17 @@
+general:
+  name: Name
+  description: Description
+  due_date: Due Date
+  category: Tag
+  button:
+    success: Confirm
+    cancel: Cancel
+    update: Update
+    delete: Delete
+    add: Create
+datatables:
+  sLengthMenu: Show _MENU_ entries per page
+  sSearch: Search
+  sInfo: Showing _START_ to _END_ of _TOTAL_ records
+  previous: Previous
+  next: Next

@@ -1,0 +1,17 @@
+general:
+  name: Nom
+  description: Description
+  due_date: Date Effective
+  category: Catégorie
+  button:
+    success: Valider
+    cancel: Annuler
+    update: Modifier
+    delete: Supprimer
+    add: Ajouter
+datatables:
+  sLengthMenu: Affichage de _MENU_ entrées par pages
+  sSearch: Rechercher
+  sInfo: Affichage de _START_ à _END_ sur _TOTAL_ entrées
+  previous: Précédent
+  next: Suivant

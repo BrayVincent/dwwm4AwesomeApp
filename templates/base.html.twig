@@ -16,6 +16,14 @@
 
 	</head>
 	<body>
+		<div>
+			<button>
+				<a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), {_locale: 'en'}) }}">English</a>
+			</button>
+			<button>
+				<a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), {_locale: 'fr'}) }}">French</a>
+			</button>
+		</div>
 		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 			<p>Vous êtes connecté en tant que :
 				{{ app.user.email }}</p>
