@@ -69,6 +69,11 @@ class TaskController extends AbstractController
             $this->manager->persist($task);
             $this->manager->flush();
 
+            $this->addFlash(
+                'success',
+                'L\'action a bien été effectuée'
+            );
+
             return $this->redirectToRoute('task_listing');
         }
 
@@ -85,6 +90,11 @@ class TaskController extends AbstractController
 
         $this->manager->remove($task);
         $this->manager->flush();
+
+        $this->addFlash(
+            'success',
+            'La suppression a bien été effectuée'
+        );
 
         return $this->redirectToRoute("task_listing");
     }

@@ -13,6 +13,16 @@
 
 	<div class="container">
 
+	{% for label, messages in app.flashes %}
+		{% for message in messages %}
+			<div class="d-flex justify-content-center">
+				<p class= "fw-bold text-{{ label }}">
+				{{ message }}
+				</p>
+			</div>
+		{% endfor %}
+	{% endfor %}
+
 		<a href="{{ path('task_create') }}" class="btn btn-primary">{{'general.button.add' | trans}}</a>
 
 		<table class="table table-striped table-bordered" id="tasksTable">
