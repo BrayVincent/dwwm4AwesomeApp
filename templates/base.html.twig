@@ -18,10 +18,10 @@
 	<body>
 		<div>
 			<button>
-				<a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), {_locale: 'en'}) }}">English</a>
+				<a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({ '_locale': 'en' })) }}">English</a>
 			</button>
 			<button>
-				<a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), {_locale: 'fr'}) }}">French</a>
+				<a class="dropdown-item" href="{{ path(app.request.attributes.get('_route'), app.request.attributes.get('_route_params')|merge({ '_locale': 'fr' })) }}">French</a>
 			</button>
 		</div>
 		{% if is_granted('IS_AUTHENTICATED_FULLY') %}
