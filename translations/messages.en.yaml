@@ -9,6 +9,7 @@ general:
     update: Update
     delete: Delete
     add: Create
+    download: Download
 datatables:
   sLengthMenu: Show _MENU_ entries per page
   sSearch: Search
