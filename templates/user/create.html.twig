@@ -1,0 +1,27 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+
+	Créer un utilisateur
+
+{% endblock %}
+
+{% block body %}
+
+	<br><br>
+	<div class="d-flex justify-content-center">
+		<h1>GESTION UTILISATEUR</h1>
+	</div>
+	<br><br>
+	<div class="container">
+		{{ form_start(form) }}
+		{{ form_widget(form) }}
+		{{ form_end(form) }}
+		<div>
+			<a href="/user/listing" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Retour</a>
+			<a href="/login" class="btn btn-warning btn-lg active" role="button" aria-pressed="true">Accueil</a>
+		</div>
+
+	</div>
+
+{% endblock %}

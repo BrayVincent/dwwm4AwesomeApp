@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+	<link rel="stylesheet" href="//cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"/>
+{% endblock %}
+{% block title %}Liste des utilisateurs
+{% endblock %}
+{% block body %}
+	<div class="container">
+
+		<a href="{{ path('user_create') }}" class="btn btn-primary">Ajouter</a>
+
+		<table class="table-striped table-bordered" id="usersTable">
+			<thead>
+				<th>Id</th>
+				<th>Email</th>
+				<th>Rôle</th>
+				<th></th>
+				<th></th>
+			</thead>
+			<tbody>
+				{% if users is defined %}
+					{% for user in users %}
+						<tr>
+							<th scope='row'>{{ user.id }}</th>
+							<td>{{ user.email }}</td>
+							<td>{{ user.roles |join(', ') }}</td>
+							<td>
+								<a href="{{ path('user_update', {'id': user.id}) }}" class="btn btn-success">Update</a>
+
+							</td>
+							<td>
+								<a href="{{ path('user_delete', {'id': user.id}) }}" class="btn btn-danger">Delete</a>
+
+							</td>
+						</tr>
+					{% endfor %}
+				{% endif %}
+			</tbody>
+		</table>
+	</div>
+
+{% endblock %}
+{% block javascripts %}
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+	<script>
+		$(document).ready(function () {
+$('#usersTable').DataTable();
+});
+	</script>
+{% endblock %}
