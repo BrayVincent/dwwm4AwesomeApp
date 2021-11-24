@@ -3,6 +3,9 @@ general:
   description: Description
   due_date: Date Effective
   category: Catégorie
+  backhomepage: Retour à la page d'accueil
+  requestpage: Vous n'avez pas les accès nécessaires pour accéder à cette page essayer une autre URL ou
+  error403Titre: Accès Non Autorisé
   button:
     success: Valider
     cancel: Annuler
