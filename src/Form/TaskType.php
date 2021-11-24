@@ -2,6 +2,7 @@
 
 namespace App\Form;
 
+use Bartender;
 use App\Entity\Tag;
 use App\Entity\Task;
 use Doctrine\ORM\EntityRepository;
@@ -11,6 +12,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
@@ -32,8 +34,13 @@ class TaskType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+
+        $bartender = new Bartender();
+        $filteredBeerListNameName = $bartender->filterBeerList();
+
         $builder
-            ->add('name', TextType::class, [
+            ->add('name', ChoiceType::class, [
+                'choices' => $filteredBeerListNameName,
                 'label' => $this->translator->trans('general.name')
             ])
             ->add('description', TextareaType::class, [
