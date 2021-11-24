@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Tag
+{% endblock %}
+
+{% block body %}
+	<h1>Edit Tag</h1>
+
+	{% for label, messages in app.flashes %}
+		{% for message in messages %}
+			<div class="d-flex justify-content-center">
+				<p class="fw-bold text-{{ label }}">
+					{{ message }}
+				</p>
+			</div>
+		{% endfor %}
+	{% endfor %}
+
+
+	{{ include('tag/_form.html.twig', {'button_label': 'Update'}) }}
+
+	<a href="{{ path('tag_index') }}">back to list</a>
+
+	{{ include('tag/_delete_form.html.twig') }}
+{% endblock %}

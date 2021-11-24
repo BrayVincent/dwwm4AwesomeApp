@@ -41,3 +41,4 @@ security:
     # - { path: ^/profile, roles: ROLE_USER }
     - { path: ^/(%app.supported_locales%)/task, roles: IS_AUTHENTICATED_FULLY }
     - { path: ^/(%app.supported_locales%)/user, roles: ROLE_ADMIN }
+    - { path: ^/(%app.supported_locales%)/tag, roles: ROLE_ADMIN }
