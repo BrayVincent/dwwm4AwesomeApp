@@ -8,7 +8,7 @@
 		<th>{{'general.status.title' | trans}}</th>
 		<th></th>
 		<th></th>
-		{% if slug == 'manual' %}
+		{% if app.user.isPrefered %}
 			<th></th>
 		{% endif %}
 
@@ -32,7 +32,7 @@
 					<td>
 						<a href="{{ path('task_delete', {'id': task.id}) }}" class="btn btn-danger">{{'general.button.delete' | trans}}</a>
 					</td>
-					{% if slug == 'manual' %}
+					{% if app.user.isPrefered %}
 						<td>
 							<a href="{{ path('task_archive', {'id': task.id}) }}" class="btn btn-info">{{'general.button.archive' | trans}}</a>
 						</td>

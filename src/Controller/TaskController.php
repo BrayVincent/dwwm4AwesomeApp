@@ -43,7 +43,6 @@ class TaskController extends AbstractController
         $role = $user->getRoles();
         $id = $user->getId();
         $admin = "ROLE_ADMIN";
-        $slug = $user->getIsPrefered();
         // dd($user);
 
         if (in_array($admin, $role)) {
@@ -58,8 +57,7 @@ class TaskController extends AbstractController
 
 
         return $this->render('task/index.html.twig', [
-            'tasks' => $tasks,
-            'slug' => $slug,
+            'tasks' => $tasks
         ]);
     }
 
