@@ -42,9 +42,15 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
      */
     private $user;
 
-    public function __construct()
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isPrefered;
+
+    public function __construct(Bool $isPrefered = false)
     {
         $this->user = new ArrayCollection();
+        $this->setIsPrefered($isPrefered);
     }
 
     public function getId(): ?int
@@ -162,6 +168,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $user->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getIsPrefered(): ?bool
+    {
+        return $this->isPrefered;
+    }
+
+    public function setIsPrefered(bool $isPrefered): self
+    {
+        $this->isPrefered = $isPrefered;
 
         return $this;
     }

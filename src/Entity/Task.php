@@ -66,6 +66,19 @@ class Task
      */
     private $status;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $isArchived;
+
+
+    public function __construct(
+        Bool $isArchived = false
+    ) {
+        $this->setIsArchived($isArchived);
+    }
+
+
     public function getId(): ?int
     {
         return $this->id;
@@ -151,6 +164,18 @@ class Task
     public function setStatus(?Status $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getIsArchived(): ?bool
+    {
+        return $this->isArchived;
+    }
+
+    public function setIsArchived(bool $isArchived): self
+    {
+        $this->isArchived = $isArchived;
 
         return $this;
     }

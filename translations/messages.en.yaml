@@ -12,13 +12,19 @@ general:
     2: Work in progress
     3: Done
 
+  title_list_task: List of tasks
   button:
-    success: Confirm
     cancel: Cancel
     update: Update
     delete: Delete
+    archive: Archive
+    back: Back
+    add_task: Add new task
+    go_to_archive: See archives
+    download: download
+    success: Confirm
     add: Create
-    download: Download
+
 datatables:
   sLengthMenu: Show _MENU_ entries per page
   sSearch: Search

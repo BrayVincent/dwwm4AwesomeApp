@@ -1,0 +1,68 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+	<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+	<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"/>
+{% endblock %}
+
+{% block title %}Liste des tâches archivées
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="d-flex justify-content-center mb-5">{{ 'general.title_list_task' | trans }}</h1>
+
+		{% for label, messages in app.flashes %}
+			{% for message in messages %}
+				<div class="d-flex justify-content-center">
+					<p class="fw-bold {{ label }}">
+						{{ message }}
+					</p>
+				</div>
+			{% endfor %}
+		{% endfor %}
+
+
+		<table class="table table-striped tabled-border" id="tasksTable">
+			<thead>
+				<th>Id</th>
+				<th>{{ 'general.name' | trans }}</th>
+				<th>{% trans from 'messages' %}general.description{% endtrans %}</th>
+				<th>{% trans from 'messages' %}general.due_date{% endtrans %}</th>
+				<th>{% trans from 'messages' %}general.category{% endtrans %}</th>
+				<th></th>
+			</thead>
+			<tbody>
+				{% if tasks is defined %}
+					{% for task in tasks %}
+						<tr>
+							<th scope="row">{{ task.id }}</th>
+							<td>{{ task.name }}</td>
+							<td>{{ task.description }}</td>
+							<td>{{ task.dueAt | date('d/m/Y H:i') }}</td>
+							<td>{{ task.tag.name }}</td>
+							<td>
+								<a href="{{ path('task_delete', {'id': task.id}) }}" class=" btn btn-warning">{{ 'general.button.delete' | trans }}</a>
+							</td>
+						</tr>
+					{% endfor %}
+				{% endif %}
+			</tbody>
+		</table>
+		<div>
+			<a href="{{ path('task_listing') }}" class=" btn btn-dark m-5">{{ 'general.button.back' | trans }}</a>
+		</div>
+	</div>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+
+	<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+
+	<script>
+		$(document).ready(function () {
+$('#tasksTable').DataTable();
+});
+	</script>
+{% endblock %}

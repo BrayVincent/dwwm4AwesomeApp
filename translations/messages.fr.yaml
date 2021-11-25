@@ -12,13 +12,18 @@ general:
     2: En cours d'exécution
     3: Terminée
 
+  title_list_task: Liste des tâches
   button:
     success: Valider
     cancel: Annuler
     update: Modifier
     delete: Supprimer
-    add: Ajouter
+    archive: Archiver
+    back: Retour
+    go_to_archive: Voir les archives
     download: Télécharger
+    add: Ajouter
+
 datatables:
   sLengthMenu: Affichage de _MENU_ entrées par pages
   sSearch: Rechercher
