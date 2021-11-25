@@ -2,3 +2,15 @@
 .table-striped > tbody > tr:nth-of-type(odd) > * {
   color: black !important;
 }
+
+.statut_1 {
+  background-color: rgb(242, 128, 128) !important;
+}
+
+.statut_2 {
+  background-color: rgb(248, 216, 157) !important;
+}
+
+.statut_3 {
+  background-color: lightgreen !important;
+}

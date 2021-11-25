@@ -6,6 +6,12 @@ general:
   backhomepage: Back to the Home Page
   requestpage: The requested page couldn't be located. Checkout for any URL misspelling or
   error403Titre: Access Denied
+  status:
+    title: Status
+    1: To do
+    2: Work in progress
+    3: Done
+
   button:
     success: Confirm
     cancel: Cancel

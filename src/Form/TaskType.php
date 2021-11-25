@@ -2,9 +2,10 @@
 
 namespace App\Form;
 
-use Bartender;
 use App\Entity\Tag;
 use App\Entity\Task;
+use App\Repository\StatusRepository;
+use App\Service\Bartender;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -21,14 +22,22 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 class TaskType extends AbstractType
 {
     /**
+     * Undocumented variable
+     *
+     * @var StatusRepository
+     */
+    private $repository;
+
+    /**
      *
      * @var TranslatorInterface
      */
     private $translator;
 
-    public function __construct(TranslatorInterface $translator)
+    public function __construct(TranslatorInterface $translator, StatusRepository $repository)
     {
         $this->translator = $translator;
+        $this->repository = $repository;
     }
 
 
@@ -37,6 +46,7 @@ class TaskType extends AbstractType
 
         $bartender = new Bartender();
         $filteredBeerListNameName = $bartender->filterBeerList();
+        $listStatus = $this->repository->findAll();
 
         $builder
             ->add('name', ChoiceType::class, [
@@ -58,6 +68,18 @@ class TaskType extends AbstractType
                 },
                 'choice_label' => 'name'
             ])
+            ->add('status', ChoiceType::class, [
+                'choices' => [
+                    $this->translator->trans("general.status.1") => $this->repository->findAll()[0],
+                    $this->translator->trans("general.status.2") => $this->repository->findAll()[1],
+                    $this->translator->trans("general.status.3") => $this->repository->findAll()[2]
+                ],
+                'label' => $this->translator->trans("general.status.title"),
+                'expanded' => false,
+                'multiple' => false
+            ])
+
+
             ->add('save', SubmitType::class, [
                 'label' => $this->translator->trans('general.button.success'),
                 'attr' => [

@@ -1,6 +1,9 @@
 <?php
 
+namespace App\Service;
+
 use App\Entity\Beer;
+use App\Service\BeerConnectionManager;
 
 class Bartender
 {

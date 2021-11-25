@@ -39,6 +39,7 @@
 				<th>{% trans from 'messages' %}general.description{% endtrans %}</th>
 				<th>{% trans from 'messages' %}general.due_date{% endtrans %}</th>
 				<th>{% trans from 'messages' %}general.category{% endtrans %}</th>
+				<th>{{'general.status.title' | trans}}</th>
 				<th></th>
 				<th></th>
 			</thead>
@@ -51,6 +52,9 @@
 							<td>{{ task.description }}</td>
 							<td>{{ task.dueAt | date('d/m/Y H:i') }}</td>
 							<td>{{ task.tag.name }}</td>
+
+
+							<td class="statut_{{task.status.label}}">{{('general.status.' ~ task.status.label) | trans }}</td>
 							<td>
 								<a href="{{ path('task_update', {'id': task.id}) }}" class="btn btn-success">{{'general.button.update' | trans}}</a>
 							</td>
@@ -63,30 +67,26 @@
 				{% endif %}
 			</tbody>
 		</table>
-	</div>
-
-{% endblock %}
-
-{% block javascripts %}
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-	<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
-	<script>
-		$(document).ready(function () {
+	</tbody>
+</div>{% endblock %}{% block javascripts %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script>
+	$(document).ready(function () {
 $('#tasksTable').DataTable({
 language: {
-"sLengthMenu": "{% trans from 'messages' %}datatables.sLengthMenu    {% endtrans %}",
-"sSearch": "{% trans from 'messages' %}datatables.sSearch    {% endtrans %}",
-"sInfo": "{% trans from 'messages' %}datatables.sInfo    {% endtrans %}",
+"sLengthMenu": "{% trans from 'messages' %}datatables.sLengthMenu           {% endtrans %}",
+"sSearch": "{% trans from 'messages' %}datatables.sSearch           {% endtrans %}",
+"sInfo": "{% trans from 'messages' %}datatables.sInfo           {% endtrans %}",
 "sInfoEmpty": "Showing 0 to 0 of 0 records",
 "paginate": {
-"first": "{% trans from 'messages' %}datatables.first     {% endtrans %}",
-"previous": "{% trans from 'messages' %}datatables.previous    {% endtrans %}",
-"next": "{% trans from 'messages' %}datatables.next    {% endtrans %}",
-"last": "{% trans from 'messages' %}datatables.last    {% endtrans %}"
+"first": "{% trans from 'messages' %}datatables.first            {% endtrans %}",
+"previous": "{% trans from 'messages' %}datatables.previous           {% endtrans %}",
+"next": "{% trans from 'messages' %}datatables.next           {% endtrans %}",
+"last": "{% trans from 'messages' %}datatables.last           {% endtrans %}"
 }
 }
 
 });
 });
-	</script>
-{% endblock %}
+</script>{% endblock %}
