@@ -13,6 +13,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.2",
         "doctrine/orm": "^2.10",
         "dompdf/dompdf": "^1.1",
+        "fakerphp/faker": "^1.16",
         "guzzlehttp/guzzle": "^7.0",
         "sensio/framework-extra-bundle": "^6.2",
         "symfony/apache-pack": "^1.0",
@@ -36,7 +37,6 @@
         "twig/twig": "^2.12|^3.0"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.16",
         "symfony/maker-bundle": "^1.35",
         "symfony/stopwatch": "5.3.*",
         "symfony/var-dumper": "5.3.*",
